@@ -1,6 +1,14 @@
 # Sample Web Api backend for the Game
 This is a sample Web Api backend for the Game Web App. It is written in C# using the .NET Core framework.
 
+### App live at:
+------------------
+- ArgoCD:     http://34.59.100.243 
+- GameApi:    http://34.59.156.205:8080/players
+- Grafana:    http://34.121.51.254
+- Prometheus: http://34.27.231.140:9090
+-------------------
+
 ## Local Dev
 
 - Make sure you have .Net SDK and CLI installed.
@@ -89,8 +97,8 @@ Create Players
 curl -X POST "http://localhost:8080/players" -H "Content-Type: application/json" -d '{"id":1, "name":"Alice", "score":0}'
 curl -X POST "http://localhost:8080/players" -H "Content-Type: application/json" -d '{"id":17, "name":"Shreyas", "score":666}'
 
-curl -X POST "http://34.46.237.17:8080/players" -H "Content-Type: application/json" -d '{"id":1, "name":"Markus Toivonen", "score":0}'
-curl -X POST "http://34.46.237.17:8080/players" -H "Content-Type: application/json" -d '{"id":17, "name":"Shreyas", "score":666}'
+curl -X POST "http://34.59.156.205:8080/players" -H "Content-Type: application/json" -d '{"id":1, "name":"Markus Toivonen", "score":0}'
+curl -X POST "http://34.59.156.205:8080/players" -H "Content-Type: application/json" -d '{"id":17, "name":"Shreyas", "score":666}'
 
 
 
@@ -953,5 +961,13 @@ helm upgrade --cleanup-on-fail --install --create-namespace --namespace monitori
 
 helm diff upgrade --namespace monitoring  kube-prometheus-stack -f kube-prometheus-stack/values/custom-values.yaml ./kube-prometheus-stack -C3
 
+
+```
+
+### Argo Sync
+```
+kubectl apply -f game-web-api-dotnet/helm-chart/dotnet-game-api/argo_app_backend.yaml
+kubectl apply -f game-web-api-dotnet/helm-chart/kube-prometheus-stack/argo_app_kps.yaml
+kubectl apply -f game-web-api-dotnet/helm-chart/loki-stack/argo_app_logging.yaml
 
 ```
