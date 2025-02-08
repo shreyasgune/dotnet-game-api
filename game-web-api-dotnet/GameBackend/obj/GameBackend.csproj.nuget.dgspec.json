@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/GameBackend.csproj": {}
+    "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/GameBackend.csproj": {}
   },
   "projects": {
-    "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/GameBackend.csproj": {
+    "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/GameBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/GameBackend.csproj",
+        "projectUniqueName": "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/GameBackend.csproj",
         "projectName": "GameBackend",
-        "projectPath": "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/GameBackend.csproj",
+        "projectPath": "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/GameBackend.csproj",
         "packagesPath": "/home/sgune/.nuget/packages/",
-        "outputPath": "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/obj/",
+        "outputPath": "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/sgune/.nuget/NuGet/NuGet.Config"
