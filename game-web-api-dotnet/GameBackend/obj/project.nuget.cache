@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VYthTsoPlDk=",
+  "dgSpecHash": "Vt0UGAnOzXM=",
   "success": true,
-  "projectFilePath": "/home/sgune/devs/dotnet-game-api/monitoring-stack/game-web-api-dotnet/GameBackend/GameBackend.csproj",
+  "projectFilePath": "/home/sgune/dotnet-game-api/game-web-api-dotnet/GameBackend/GameBackend.csproj",
   "expectedPackageFiles": [
     "/home/sgune/.nuget/packages/elasticsearch.net/7.17.5/elasticsearch.net.7.17.5.nupkg.sha512",
     "/home/sgune/.nuget/packages/microsoft.aspnetcore.openapi/8.0.12/microsoft.aspnetcore.openapi.8.0.12.nupkg.sha512",

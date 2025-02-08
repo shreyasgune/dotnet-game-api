@@ -18,8 +18,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console() // Standard output (visible in `kubectl logs`)
     .CreateLogger();
 
-// for LOKI, use .WriteTo.GrafanaLoki("http://loki-service:3100") 
-
 builder.Host.UseSerilog();
 
 

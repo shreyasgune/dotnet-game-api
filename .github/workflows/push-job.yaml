@@ -1,10 +1,12 @@
-name: Build Image
+name: Push Image
 
 on:
-  pull_request:
-    paths:
-      - 'game-web-api-dotnet/Dockerfile' 
-      - 'game-web-api-dotnet/GameBackend/Program.cs'
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Docker image tag (e.g., latest, 0.1, commit-hash)'
+        required: true
+        default: ${{ github.sha }}
 
 jobs:
   build:
@@ -26,13 +28,11 @@ jobs:
       - name: Build Docker image
         run: |
           cd game-web-api-dotnet
-          IMAGE_TAG="${GITHUB_SHA:0:7}"
-          docker build -t shreyasgune/dotnet-web-api:$IMAGE_TAG .
+          docker build -t shreyasgune/dotnet-web-api:${{ github.event.inputs.image_tag }} .
 
       - name: Start Docker container in detached mode
         run: |
-          IMAGE_TAG="${GITHUB_SHA:0:7}"
-          docker run -d --name test-$IMAGE_TAG -p 8080:8080 shreyasgune/dotnet-web-api:$IMAGE_TAG
+          docker run -d --name test-${{ github.event.inputs.image_tag }} -p 8080:8080 shreyasgune/dotnet-web-api:${{ github.event.inputs.image_tag }}
       
       - name: Wait for container start, about 5 sec
         run: sleep 5
@@ -43,5 +43,8 @@ jobs:
 
       - name: Check logs
         run: |
-          IMAGE_TAG="${GITHUB_SHA:0:7}"
-          docker logs test-$IMAGE_TAG
+          docker logs test-${{ github.event.inputs.image_tag }}
+      
+      - name : Push to repo
+        run: |
+          docker push shreyasgune/dotnet-web-api:${{ github.event.inputs.image_tag }}
