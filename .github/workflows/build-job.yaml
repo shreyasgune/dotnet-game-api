@@ -3,8 +3,8 @@ name: Build Docker Image
 on:
   pull_request:
     paths:
-      - 'Dockerfile' 
-      - 'game-web-api-dotnet/GameBackend'
+      - 'game-web-api-dotnet/Dockerfile' 
+      - 'game-web-api-dotnet/GameBackend/Program.cs'
 
 jobs:
   build:
