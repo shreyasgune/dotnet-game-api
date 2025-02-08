@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: "${GITHUB_SHA:0:7}"
 
     steps:
       - name: Checkout repository
