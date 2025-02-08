@@ -45,3 +45,22 @@ jobs:
         run: |
           IMAGE_TAG="${GITHUB_SHA:0:7}"
           docker logs test-$IMAGE_TAG
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "shreyasgune/dotnet-web-api:test"
+          format: "json"
+          security-checks: "vuln"
+          output: "docker-security-scan.json.tmp"
+
+      - name: Keep only the results section
+        id: update
+        run: |
+          BEFORE="$(jq '.[].Vulnerabilities|length' < docker-security-scan.json)"
+          jq --raw-output '.Results | del(.[].Vulnerabilities[].Layer) | del(.[].Vulnerabilities[].LastModifiedDate)' docker-security-scan.json.tmp > docker-security-scan.json
+          rm -f docker-security-scan.json.tmp
+          AFTER="$(jq '.[].Vulnerabilities|length' < docker-security-scan.json)"
+          if [[ $BEFORE -lt $AFTER ]]; then
+            echo "labels=new CVE" >> "$GITHUB_OUTPUT"
+          fi
