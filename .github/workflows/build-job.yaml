@@ -45,3 +45,12 @@ jobs:
         run: |
           IMAGE_TAG="${GITHUB_SHA:0:7}"
           docker logs test-$IMAGE_TAG
+
+      - name: Install Trivy
+        run: |
+          curl -sfL https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_Linux-64bit.tar.gz | tar -xz -C /usr/local/bin trivy
+
+      - name: Trivy Scan
+        run: |
+          IMAGE_TAG="${GITHUB_SHA:0:7}"
+          trivy image --no-progress shreyasgune/dotnet-web-api:$IMAGE_TAG
