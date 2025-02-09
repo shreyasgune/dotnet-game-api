@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dotnet-game-api
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dotnet-game-api
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'see_sharp_game_api'
+    path: 'game-web-api-dotnet/helm-chart/dotnet-game-api'  
+    helm:
+      valueFiles:
+        - values.yaml
+        - values/gke.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

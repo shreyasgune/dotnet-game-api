@@ -1041,7 +1041,7 @@ helm diff upgrade --namespace vault -f vault/values/custom-values.yaml vault ./v
 
 ### Argo Sync
 ```
-kubectl apply -f game-web-api-dotnet/helm-chart/dotnet-game-api/argo_app_backend.yaml
-kubectl apply -f game-web-api-dotnet/helm-chart/kube-prometheus-stack/argo_app_kps.yaml
-kubectl apply -f game-web-api-dotnet/helm-chart/loki-stack/argo_app_logging.yaml
+kubectl apply -f game-web-api-dotnet/argocd-apps/demo/argo_app_backend.yaml
+kubectl apply -f game-web-api-dotnet/argocd-apps/demo/argo_app_kps.yaml
+kubectl apply -f game-web-api-dotnet/argocd-apps/demo/argo_app_logging.yaml
 ```

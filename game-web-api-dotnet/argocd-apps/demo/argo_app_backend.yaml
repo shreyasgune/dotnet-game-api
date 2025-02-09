@@ -10,13 +10,13 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
-    targetRevision: 'see_sharp_game_api'
-    path: 'game-web-api-dotnet/helm-chart/dotnet-game-api'  # Set the path to the directory containing your manifests
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/dotnet-game-api'
     helm:
       valueFiles:
-        - values.yaml  # Add any specific values files if needed
+        - values.yaml
         - values/gke.yaml
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: false

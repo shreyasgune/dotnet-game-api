@@ -1,0 +1,164 @@
+--- #VAULT
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vault
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: vault
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/vault'
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # INGRESS-NGINX
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ingress-nginx
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/ingress-nginx'
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # EXTERNAL-SECRETS
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-secrets
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: external-secrets
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/external-secrets'
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # ATLANTIS
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atlantis
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: atlantis
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/atlantis'
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # CERT-MANAGER
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cert-manager
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/cert-manager'
+    helm:
+      valueFiles:
+        - values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # LOKI
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki-stack
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: logging
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/loki-stack'  
+    helm:
+      valueFiles:
+        - values.yaml  
+        - values/custom-values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+--- # KUBE-PROMETHEUS-STACK
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: monitoring
+  project: default
+  source:
+    repoURL: 'https://github.com/shreyasgune/dotnet-game-api.git'
+    targetRevision: 'main'
+    path: 'game-web-api-dotnet/helm-chart/kube-prometheus-stack'  
+    helm:
+      valueFiles:
+        - values.yaml  
+        - values/custom-values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---  
+
