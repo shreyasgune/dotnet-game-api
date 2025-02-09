@@ -934,10 +934,10 @@ Plan: 8 to add, 0 to change, 0 to destroy.
 gcloud container clusters get-credentials us-central1-dev-cluster --region us-central1 --project angelic-digit-297517
 ```
 
-### Helm Addons
-```
-ARGOCD
+## Helm Addons
 
+### ARGO-CD
+```
 helm repo add argo https://argoproj.github.io/argo-helm
 
 helm pull argo/argo-cd --untar --untardir .
@@ -949,18 +949,29 @@ helm diff upgrade --namespace argocd -f argo-cd/values/custom-values.yaml argo-c
 username:admin
 passowrd:
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 
+### ATLANTIS
+```
+helm repo add atlantis https://runatlantis.github.io/helm-charts
 
-=================
-LOKI
+helm pull atlantis/atlantis --untar --untardir .
 
+helm upgrade --cleanup-on-fail --install --create-namespace --namespace atlantis -f atlantis/values/custom-values.yaml atlantis ./atlantis 
+
+helm diff upgrade --namespace atlantis -f atlantis/values/custom-values.yaml atlantis ./atlantis -C3
+```
+
+### LOKI
+```
 helm upgrade --cleanup-on-fail --install --create-namespace --namespace logging -f loki-stack/values/custom-values.yaml loki-stack ./loki-stack
 
 helm diff upgrade --namespace logging -f loki-stack/values/custom-values.yaml loki-stack ./loki-stack -C3
+```
 
-===================
-KPS
 
+### Kube Prometheus Stack
+```
 helm show crds prometheus-community/kube-prometheus-stack | kubectl apply --server-side=true --overwrite=false --force-conflicts -f -
 
 helm install --dry-run --debug --create-namespace --namespace monitoring kube-prometheus-stack -f kube-prometheus-stack/values/custom-values.yaml ./kube-prometheus-stack  # dry run
@@ -968,14 +979,69 @@ helm install --dry-run --debug --create-namespace --namespace monitoring kube-pr
 helm upgrade --cleanup-on-fail --install --create-namespace --namespace monitoring kube-prometheus-stack -f kube-prometheus-stack/values/custom-values.yaml ./kube-prometheus-stack
 
 helm diff upgrade --namespace monitoring  kube-prometheus-stack -f kube-prometheus-stack/values/custom-values.yaml ./kube-prometheus-stack -C3
-
-
 ```
+
+
+### NGINX INGRESS
+```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+helm pull ingress-nginx/ingress-nginx --untar --untardir .
+
+helm upgrade --cleanup-on-fail --install --create-namespace --namespace ingress-nginx -f ingress-nginx/values/custom-values.yaml ingress-nginx ./ingress-nginx 
+
+helm diff upgrade --namespace ingress-nginx -f ingress-nginx/values/custom-values.yaml ingress-nginx ./ingress-nginx -C3
+```
+
+### CERT MANAGER
+```
+helm repo add jetstack https://charts.jetstack.io --force-update
+
+helm pull jetstack/cert-manager --untar --untardir .
+
+helm upgrade --cleanup-on-fail --install --create-namespace --namespace cert-manager -f cert-manager/values/custom-values.yaml cert-manager ./cert-manager 
+
+helm diff upgrade --namespace cert-manager -f cert-manager/values/custom-values.yaml cert-manager ./cert-manager -C3
+```
+
+### EXTERNAL SECRETS
+```
+helm repo add external-secrets https://charts.external-secrets.io
+
+helm pull external-secrets/external-secrets --untar --untardir .
+
+helm upgrade --cleanup-on-fail --install --create-namespace --namespace external-secrets -f external-secrets/values/custom-values.yaml external-secrets ./external-secrets 
+
+helm diff upgrade --namespace external-secrets -f external-secrets/values/custom-values.yaml external-secrets ./external-secrets -C3
+```
+More Info found at [documentation](https://external-secrets.io/latest/provider/google-secrets-manager/#gcp-service-account-authentication) and samples found at [samples](./game-web-api-dotnet/helm-chart/external-secrets/sample-secrets/)
+
+
+### VAULT
+```
+helm repo add hashicorp https://helm.releases.hashicorp.com
+
+helm pull hashicorp/vault --untar --untardir .
+
+helm upgrade --cleanup-on-fail --install --create-namespace --namespace vault -f vault/values/custom-values.yaml vault ./vault 
+
+helm diff upgrade --namespace vault -f vault/values/custom-values.yaml vault ./vault -C3
+```
+
+
+### Other Considerations for Helm
+- Security: Istio, Keycloak
+- CI/CD: Jenkins, Custom Github Actions Runner
+- Backup & Recovery: Stash
+- Tracing/Logging: Jaeger, ELK stack
+- Performance: Memcached, Redis
+- Distributed Systems: Cassandra, Consul
+- Message Bus: RabbitMQ, Pulsar
+
 
 ### Argo Sync
 ```
 kubectl apply -f game-web-api-dotnet/helm-chart/dotnet-game-api/argo_app_backend.yaml
 kubectl apply -f game-web-api-dotnet/helm-chart/kube-prometheus-stack/argo_app_kps.yaml
 kubectl apply -f game-web-api-dotnet/helm-chart/loki-stack/argo_app_logging.yaml
-
 ```
