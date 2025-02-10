@@ -1976,7 +1976,7 @@ server:
     # -- Server container port
     server: 8082
     # -- Metrics container port
-    metrics: 8083
+    metrics: 8082
 
   # -- Host Network for Server pods
   hostNetwork: false
@@ -2172,7 +2172,7 @@ server:
       # -- Metrics service labels
       labels: {}
       # -- Metrics service port
-      servicePort: 8083
+      servicePort: 8082
       # -- Metrics service port name
       portName: http-metrics
     serviceMonitor:

@@ -22,7 +22,7 @@ prometheus:
     - job_name: "argocd"
       metrics_path: "/metrics"
       static_configs:
-        - targets: ["argocd-metrics.argocd.svc.cluster.local:8083"]
+        - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8082"]
 
 grafana:
   service:
