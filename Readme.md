@@ -9,13 +9,11 @@ This is a sample Web Api backend for the Game Web App. It is written in C# using
 - Prometheus: http://34.27.231.140:9090
 -------------------
 
+### Dashboard
+![](dashboard.JPG)
+
 ### Proposed Architecture
-<Details>
-<summary> click to expand </summary>
-
 ![](./proposed-architecture.png)
-
-</Details>
 
 ## Local Dev
 
