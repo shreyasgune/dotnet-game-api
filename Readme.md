@@ -9,13 +9,11 @@ This is a sample Web Api backend for the Game Web App. It is written in C# using
 - Prometheus: http://34.27.231.140:9090
 -------------------
 
+### Dashboard
+![](dashboard.JPG)
+
 ### Proposed Architecture
-<Details>
-<summary> click to expand </summary>
-
 ![](./proposed-architecture.png)
-
-</Details>
 
 ## Local Dev
 
@@ -968,6 +966,7 @@ helm upgrade --cleanup-on-fail --install --create-namespace --namespace logging 
 
 helm diff upgrade --namespace logging -f loki-stack/values/custom-values.yaml loki-stack ./loki-stack -C3
 ```
+When integrating with Granfana, use: DNS: http://loki-stack.logging.svc.cluster.local:3100
 
 
 ### Kube Prometheus Stack
