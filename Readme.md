@@ -968,6 +968,7 @@ helm upgrade --cleanup-on-fail --install --create-namespace --namespace logging 
 
 helm diff upgrade --namespace logging -f loki-stack/values/custom-values.yaml loki-stack ./loki-stack -C3
 ```
+When integrating with Granfana, use: DNS: http://loki-stack.logging.svc.cluster.local:3100
 
 
 ### Kube Prometheus Stack
