@@ -21,8 +21,13 @@ prometheus:
     additionalScrapeConfigs:
     - job_name: "argocd"
       metrics_path: "/metrics"
+      scrape_interval: 30s
+      scrape_timeout: 90s
       static_configs:
         - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083"]
+          labels:
+            alias: argocd-server-metrics
+
 
 grafana:
   service:
