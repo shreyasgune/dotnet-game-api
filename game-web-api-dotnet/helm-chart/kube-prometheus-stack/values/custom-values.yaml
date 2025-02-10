@@ -19,11 +19,40 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     additionalScrapeConfigs:
-    - metrics_path: "/metrics"
+    - job_name: "argocd-argocd-server"
+      metrics_path: "/metrics"
       scrape_interval: 30s
       scrape_timeout: 90s
       static_configs:
-        - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083","argo-cd-argocd-applicationset-controller-metrics.argocd.svc.cluster.local:8085","argo-cd-argocd-notifications-controller-metrics.argocd.svc.cluster.local:9001","argo-cd-argocd-redis-metrics.argocd.svc.cluster.local:9121","argo-cd-argocd-repo-server-metrics.argocd.svc.cluster.local:8084"]
+        - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083"]
+    
+    - job_name: "argocd-argocd-applicationset-controller"
+      metrics_path: "/metrics"
+      scrape_interval: 30s
+      scrape_timeout: 90s
+      static_configs:
+        - targets: ["argo-cd-argocd-applicationset-controller-metrics.argocd.svc.cluster.local:8085"]
+    
+    - job_name: "argocd-argocd-notifications-controller"
+      metrics_path: "/metrics"
+      scrape_interval: 30s
+      scrape_timeout: 90s
+      static_configs:
+        - targets: ["argo-cd-argocd-notifications-controller-metrics.argocd.svc.cluster.local:9001"]
+    
+    - job_name: "argocd-argocd-redis"
+      metrics_path: "/metrics"
+      scrape_interval: 30s
+      scrape_timeout: 90s
+      static_configs:
+        - targets: ["argo-cd-argocd-redis-metrics.argocd.svc.cluster.local:9121"]
+    
+    - job_name: "argocd-argocd-repo-server"
+      metrics_path: "/metrics"
+      scrape_interval: 30s
+      scrape_timeout: 90s
+      static_configs:
+        - targets: ["argo-cd-argocd-repo-server-metrics.argocd.svc.cluster.local:8084"]
 
 
 grafana:
