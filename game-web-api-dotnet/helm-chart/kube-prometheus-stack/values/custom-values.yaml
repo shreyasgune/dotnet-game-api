@@ -24,7 +24,7 @@ prometheus:
       scrape_interval: 30s
       scrape_timeout: 90s
       static_configs:
-        - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083"]
+        - targets: ["argo-cd-argocd-server-metrics.argocd.svc.cluster.local:8083","argo-cd-argocd-applicationset-controller-metrics.argocd.svc.cluster.local:8085","argo-cd-argocd-notifications-controller-metrics.argocd.svc.cluster.local:9001","argo-cd-argocd-redis-metrics.argocd.svc.cluster.local:9121","argo-cd-argocd-repo-server-metrics.argocd.svc.cluster.local:8084"]
           labels:
             alias: argocd-server-metrics
 
