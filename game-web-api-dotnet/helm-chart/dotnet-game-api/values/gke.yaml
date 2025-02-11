@@ -1,3 +1,8 @@
+image:
+  repository: shreyasgune/dotnet-web-api
+  tag: test
+  pullPolicy: Always
+
 service:
   type: LoadBalancer
 svcMon: true
