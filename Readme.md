@@ -947,6 +947,11 @@ helm diff upgrade --namespace argocd -f argo-cd/values/custom-values.yaml argo-c
 username:admin
 passowrd:
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+## ONLY FOR TESTING
+To reset the password: kubectl patch secret argocd-secret  -p '{"data": {"admin.password": null, "admin.passwordMtime": null}}' -n argocd
+
+Then restart the server pod and get the new admin-secret
 ```
 
 ### ATLANTIS
