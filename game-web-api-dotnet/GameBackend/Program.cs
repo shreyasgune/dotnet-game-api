@@ -62,6 +62,13 @@ app.MapGet("/error", () =>
     return Results.Problem("Simulated error");
 });
 
+//Test Feature Rollout
+app.MapGet("/feature", () =>
+{
+    logger.LogInformation("This is just a test feature"); // Simulate feature rollout
+    return Results.Ok("Simulated feature");
+});
+
 // Get all players
 app.MapGet("/players", () =>
 {
