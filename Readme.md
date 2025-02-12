@@ -106,6 +106,9 @@ curl -X POST "http://localhost:8080/players" -H "Content-Type: application/json"
 curl -X POST "http://34.59.156.205:8080/players" -H "Content-Type: application/json" -d '{"id":1, "name":"Markus Toivonen", "score":0}'
 curl -X POST "http://34.59.156.205:8080/players" -H "Content-Type: application/json" -d '{"id":17, "name":"Shreyas", "score":666}'
 
+Create random data:
+for i in {1..25}; do curl -X POST "http://34.59.156.205:8080/players" -H "Content-Type: application/json" -d '{"id":'$i', "name":"Player'$(shuf -i 1-10000 -n 1)'", "score":'$(shuf -i 100-1000 -n 1)'}'; done
+
 
 
 GET all players (do it multiple times, to see the counter increment)
