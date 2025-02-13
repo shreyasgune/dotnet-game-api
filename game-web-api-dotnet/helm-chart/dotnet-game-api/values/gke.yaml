@@ -1,6 +1,6 @@
 image:
   repository: shreyasgune/dotnet-web-api
-  tag: test
+  tag: shreyas
   pullPolicy: Always
 
 service:
