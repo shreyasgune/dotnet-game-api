@@ -3,10 +3,10 @@ This is a sample Web Api backend for the Game Web App. It is written in C# using
 
 ### App live at:
 ------------------
-- ArgoCD:     http://34.59.100.243 
-- GameApi:    http://34.59.156.205:8080/players
-- Grafana:    http://34.121.51.254
-- Prometheus: http://34.27.231.140:9090
+- ArgoCD:     http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> 
+- GameApi:    http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> :8080/players
+- Grafana:    http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> 
+- Prometheus: http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> :9090
 -------------------
 
 ### Dashboard
