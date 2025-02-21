@@ -4,9 +4,9 @@ This is a sample Web Api backend for the Game Web App. It is written in C# using
 ### App live at:
 ------------------
 - ArgoCD:     http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> 
-- GameApi:    http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> :8080/players
+- GameApi:    http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY>:8080/players
 - Grafana:    http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> 
-- Prometheus: http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY> :9090
+- Prometheus: http://<NEW IP WHEN I REACREATE THE CLUSTER. RIGHT NOW, ITS SHUT DOWN, TO SAVE MONEY>:9090
 -------------------
 
 ### Dashboard
